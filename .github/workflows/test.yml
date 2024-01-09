@@ -1,7 +1,13 @@
 name: Test Workflow
+run-name: ${{ github.actor }} is learning GitHub Actions
 on: push
 jobs:
   job1:
-    runs-on: ubuntu-linux
+    runs-on: ubuntu-latest
     steps:
-      - run: echo "test run..."
+      - run: echo "Job triggered by ${{ github.event_name  }}"
+      - run: echo "Job running on ${{ runner.os }}"
+      - run: echo "Branch is ${{ github.ref }} and repo is ${{ github.repository }}"
+      - run: echo "Workspace is ${{ github.workspace }}"
+      - uses: docker://alpine
+      - run: echo "Job running on ${{ runner.os }}"
